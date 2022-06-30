@@ -2,6 +2,7 @@ import React, { memo, useCallback } from 'react';
 
 import { func } from 'prop-types';
 import { useFormik } from 'formik';
+import { TextField, Button } from '@mui/material';
 
 import { initialValuesRegistration, validationSchemaRegistration } from '../constants';
 
@@ -22,57 +23,57 @@ function Registration({ setOpenR }) {
       <form onSubmit={formik.handleSubmit}>
         <div className="form-div">
 
-          <h3>Name</h3>
-          <input
-            className="form-input"
-            value=""
-            id="name"
-            type="text"
-            {...formik.getFieldProps('name')}
+          <TextField
+            sx={{
+              margin: '20px 0 10px 0',
+            }}
+            fullWidth
+            id="emailR"
+            name="email"
+            label="Email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
           />
-          {formik.touched.name && formik.errors.name ? (
-            <div>{formik.errors.name}</div>
-          ) : null}
-
-          <h3>Email address</h3>
-          <input
-            className="form-input"
-            value=""
-            id="email_reg"
-            type="email"
-            {...formik.getFieldProps('email')}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <div>{formik.errors.email}</div>
-          ) : null}
-
-          <h3>Password</h3>
-          <input
-            className="form-input"
-            value=""
-            id="password_reg"
+          <TextField
+            sx={{
+              margin: '10px 0 20px 0',
+            }}
+            fullWidth
+            id="passwordR"
+            name="password"
+            label="Password"
             type="password"
-            {...formik.getFieldProps('password')}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
           />
-          {formik.touched.password && formik.errors.password ? (
-            <div>{formik.errors.password}</div>
-          ) : null}
-
-          <h3>Confirm password</h3>
-          <input
-            className="form-input"
-            value=""
-            id="confirmPassword"
-            type="password"
-            {...formik.getFieldProps('confirmPassword')}
-          />
-          {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-            <div>{formik.errors.confirmPassword}</div>
-          ) : null}
           <br />
         </div>
-        <button type="submit" id="oneR" className="modal-button">Submit</button>
-        <button type="button" id="twoR" className="modal-button" onClick={() => { setOpenR(false); formik.resetForm(); }}>Close</button>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+        >
+          <Button
+            color="primary"
+            variant="contained"
+            type="submit"
+          >
+            Submit
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            type="button"
+            onClick={() => { setOpenR(false); formik.resetForm(); }}
+          >
+            Close
+          </Button>
+        </div>
       </form>
     </>
   );

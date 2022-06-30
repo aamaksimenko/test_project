@@ -5,7 +5,10 @@ import './HomePage.css';
 function HomePage() {
   return (
     <header className="home">
-      <div>
+      <div style={{
+        fontSize: '50px',
+      }}
+      >
         Home
       </div>
     </header>

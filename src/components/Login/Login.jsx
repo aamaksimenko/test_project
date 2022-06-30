@@ -74,7 +74,6 @@ function LogIn({ setOpenL }) {
             Close
           </Button>
         </div>
-
       </form>
     </>
   );
