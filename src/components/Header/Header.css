@@ -1,0 +1,7 @@
+input{
+    border: 1px solid black;
+}
+.header{
+    height: 10vh;
+    background-color: blueviolet;
+}

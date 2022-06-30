@@ -1,8 +1,10 @@
 import React, { memo } from 'react';
 
+import './LibraryPage.css';
+
 function LibraryPage() {
   return (
-    <header className="header">
+    <header className="library">
       <div>
         library
       </div>

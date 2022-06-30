@@ -1,8 +1,10 @@
 import React, { memo } from 'react';
 
+import './HomePage.css';
+
 function HomePage() {
   return (
-    <header className="header">
+    <header className="home">
       <div>
         Home
       </div>
