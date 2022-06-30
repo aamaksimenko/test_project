@@ -6,6 +6,8 @@ import { TextField, Button } from '@mui/material';
 
 import { initialValuesLogIn, validationSchemaLogIn } from '../constants';
 
+import { styleModalButton } from '../../style/style';
+
 function LogIn({ setOpenL }) {
   const submitLogIn = useCallback((values, { resetForm }) => {
     resetForm(initialValuesLogIn);
@@ -20,9 +22,9 @@ function LogIn({ setOpenL }) {
 
   return (
     <>
-      <h2 className="modal-title">Sign in</h2>
+      <h2>Sign in</h2>
       <form onSubmit={formik.handleSubmit}>
-        <div className="form-div">
+        <div>
           <TextField
             sx={{
               margin: '20px 0 10px 0',
@@ -52,12 +54,7 @@ function LogIn({ setOpenL }) {
           />
           <br />
         </div>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-        >
+        <div style={styleModalButton}>
           <Button
             color="primary"
             variant="contained"

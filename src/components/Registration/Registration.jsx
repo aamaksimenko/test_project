@@ -6,6 +6,8 @@ import { TextField, Button } from '@mui/material';
 
 import { initialValuesRegistration, validationSchemaRegistration } from '../constants';
 
+import { styleModalButton } from '../../style/style';
+
 function Registration({ setOpenR }) {
   const submitRegistration = useCallback((values, { resetForm }) => {
     resetForm(initialValuesRegistration);
@@ -19,10 +21,9 @@ function Registration({ setOpenR }) {
   });
   return (
     <>
-      <h2 className="modal-title">Registration form</h2>
+      <h2>Registration form</h2>
       <form onSubmit={formik.handleSubmit}>
-        <div className="form-div">
-
+        <div>
           <TextField
             sx={{
               margin: '20px 0 10px 0',
@@ -38,7 +39,7 @@ function Registration({ setOpenR }) {
           />
           <TextField
             sx={{
-              margin: '10px 0 20px 0',
+              margin: '10px 0 10px 0',
             }}
             fullWidth
             id="passwordR"
@@ -52,12 +53,7 @@ function Registration({ setOpenR }) {
           />
           <br />
         </div>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-        >
+        <div style={styleModalButton}>
           <Button
             color="primary"
             variant="contained"

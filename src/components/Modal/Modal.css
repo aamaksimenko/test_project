@@ -8,8 +8,8 @@
   }
   
   .portal__content{
-    transform: translate(25vw, 25vh);
-    width: 50vw;
+    transform: translate(30vw, 30vh);
+    width: 30vw;
     border-radius: 12px;
     background-color: white;  
   }
