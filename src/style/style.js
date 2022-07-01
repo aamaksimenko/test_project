@@ -1,19 +1,7 @@
-export const header = {
-  height: '10vh',
-  backgroundColor: 'blueviolet',
-  display: 'flex',
-  alignItems: 'center',
-};
-
-export const headerDiv = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-};
-
 export const headerButton = {
   backgroundColor: 'blueviolet',
-  fontSize: '20px',
+  fontSize: '17px',
+  color: 'black',
 };
 
 export const styleTextField = {

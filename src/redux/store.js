@@ -1,6 +1,5 @@
 import createSagaMiddleware from 'redux-saga';
 import { configureStore } from '@reduxjs/toolkit';
-// import { persistStore } from 'redux-persist';
 import logger from 'redux-logger';
 
 import rootSaga from './sagas/rootSaga';

@@ -84,3 +84,6 @@ h6 {
 .content-page{
   flex: 1 0 auto;
 }
+a:-webkit-any-link{
+  color: black;
+}

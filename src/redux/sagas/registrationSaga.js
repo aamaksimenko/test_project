@@ -9,9 +9,7 @@ function* registrationUser({ payload }) {
   try {
     const data = yield regUser(payload);
     yield put(trueRegistration(data.data));
-    console.log(payload);
     yield put(userLogIn(payload));
-    console.log(payload);
   } catch (error) {
     yield put(falseRegistration(error.message));
   }
