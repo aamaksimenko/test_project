@@ -1,15 +1,19 @@
 import React, { memo, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { func } from 'prop-types';
 import { useFormik } from 'formik';
 import { TextField, Button } from '@mui/material';
 
 import { initialValuesRegistration, validationSchemaRegistration } from '../constants';
+import { userRegistration } from '../../redux/slices/userSlice';
 
 import { styleModalButton } from '../../style/style';
 
 function Registration({ setOpenR }) {
+  const dispatch = useDispatch();
   const submitRegistration = useCallback((values, { resetForm }) => {
+    dispatch(userRegistration(values));
     resetForm(initialValuesRegistration);
     setOpenR(false);
   });

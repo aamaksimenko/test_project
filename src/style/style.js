@@ -1,3 +1,21 @@
+export const header = {
+  height: '10vh',
+  backgroundColor: 'blueviolet',
+  display: 'flex',
+  alignItems: 'center',
+};
+
+export const headerDiv = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+};
+
+export const headerButton = {
+  backgroundColor: 'blueviolet',
+  fontSize: '20px',
+};
+
 export const styleTextField = {
   display: 'flex',
   flexWrap: 'wrap',
@@ -7,11 +25,13 @@ export const styleTextField = {
   p: 1,
 };
 
-export const styleHomePageText = {
+export const styleHomePage = {
+  backgroundColor: '#9ACD32',
   fontSize: '50px',
 };
 
-export const styleHomePage = {
+export const styleLibraryPage = {
+  backgroundColor: 'aquamarine',
   fontSize: '50px',
 };
 

@@ -1,15 +1,19 @@
 import React, { memo, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { func } from 'prop-types';
 
 import { useFormik } from 'formik';
 import { TextField, Button } from '@mui/material';
 
 import { initialValuesLogIn, validationSchemaLogIn } from '../constants';
+import { userLogIn } from '../../redux/slices/loginSlice';
 
 import { styleModalButton } from '../../style/style';
 
 function LogIn({ setOpenL }) {
+  const dispatch = useDispatch();
   const submitLogIn = useCallback((values, { resetForm }) => {
+    dispatch(userLogIn(values));
     resetForm(initialValuesLogIn);
     setOpenL(false);
   });

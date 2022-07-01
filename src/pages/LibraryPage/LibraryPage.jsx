@@ -1,14 +1,12 @@
 import React, { memo } from 'react';
 
-import './LibraryPage.css';
+import { styleLibraryPage } from '../../style/style';
 
 function LibraryPage() {
   return (
-    <header className="library">
-      <div>
-        library
-      </div>
-    </header>
+    <div className="content-page" style={styleLibraryPage}>
+      library
+    </div>
   );
 }
 

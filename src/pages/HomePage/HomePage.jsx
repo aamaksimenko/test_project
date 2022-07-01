@@ -1,15 +1,12 @@
 import React, { memo } from 'react';
 
-import './HomePage.css';
-import { styleHomePage, styleHomePageText } from '../../style/style';
+import { styleHomePage } from '../../style/style';
 
 function HomePage() {
   return (
-    <header style={styleHomePage}>
-      <div style={styleHomePageText}>
-        Home
-      </div>
-    </header>
+    <div className="content-page" style={styleHomePage}>
+      Home
+    </div>
   );
 }
 

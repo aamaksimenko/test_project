@@ -1,22 +1,30 @@
 import createSagaMiddleware from 'redux-saga';
 import { configureStore } from '@reduxjs/toolkit';
-import { persistStore } from 'redux-persist';
+// import { persistStore } from 'redux-persist';
+import logger from 'redux-logger';
 
-import rootReducer from './reducers/rootReducer';
 import rootSaga from './sagas/rootSaga';
+import userReducer from './slices/userSlice';
+import loginReducer from './slices/loginSlice';
 
-const sagaMiddleware = createSagaMiddleware();
+const configureAppStore = (initialState = {}) => {
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares = [sagaMiddleware, logger];
 
-export const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    thunk: false,
-    immutableCheck: false,
-    serializableCheck: false,
-  }).concat(sagaMiddleware),
-});
+  const store = configureStore({
+    reducer: {
+      user: userReducer,
+      login: loginReducer,
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+      thunk: false,
+    }).concat(middlewares),
+    preloadedState: initialState,
+  });
 
-const persistor = persistStore(store);
+  sagaMiddleware.run(rootSaga);
 
-export default persistor;
-sagaMiddleware.run(rootSaga);
+  return store;
+};
+
+export default configureAppStore;

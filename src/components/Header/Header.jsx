@@ -1,15 +1,28 @@
-import React, { memo, useState } from 'react';
+import React, {
+  memo,
+  useState,
+  useCallback,
+} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Modal from '../Modal/Modal';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
+import { logoutUser } from '../../redux/slices/loginSlice';
 
-import './Header.css';
+import {
+  header,
+  headerDiv,
+  headerButton,
+} from '../../style/style';
 
 function Header() {
+  const dispatch = useDispatch();
   const [openR, setOpenR] = useState(false);
   const [openL, setOpenL] = useState(false);
+  const isAccess = useSelector((state) => state.login.isAccess);
+
   const inputL = (
     <Login setOpenL={setOpenL} />
   );
@@ -17,26 +30,33 @@ function Header() {
     <Registration setOpenR={setOpenR} />
   );
 
+  const logOut = useCallback(() => {
+    localStorage.clear();
+    dispatch(logoutUser());
+  }, [dispatch]);
+
   return (
-    <header className="header">
+    <header style={header}>
       <div
-        className="header"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-        }}
+        style={headerDiv}
       >
         <Link to="/">Home</Link>
-        <Link to="/library">Library</Link>
 
-        <nav className="header__menu">
-          <button id="sign-in" type="button" onClick={() => setOpenL(true)}>Sign in</button>
-          <button id="out" type="button" onClick={() => setOpenR(true)}>Registration</button>
-        </nav>
-        <Modal isOpen={openL} message={inputL} />
-        <Modal isOpen={openR} message={inputR} />
+        {(isAccess) ? (
+          <nav className="header__menu">
+            <Link to="/library">Library</Link>
+            <button style={headerButton} id="sign-out" type="button" onClick={logOut}>Log Out</button>
+          </nav>
+        ) : (
+          <nav className="header__menu">
+            <button style={headerButton} id="sign-in" type="button" onClick={() => setOpenL(true)}>Sign in</button>
+            <button style={headerButton} id="out" type="button" onClick={() => setOpenR(true)}>Registration</button>
+          </nav>
+        )}
 
       </div>
+      <Modal isOpen={openL} message={inputL} />
+      <Modal isOpen={openR} message={inputR} />
     </header>
   );
 }
