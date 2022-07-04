@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 
 import Modal from '../Modal/Modal';
 import Login from '../Login/Login';
@@ -41,28 +42,29 @@ function Header() {
     <>
       <Box>
         <AppBar position="static" sx={{ backgroundColor: 'blueviolet' }}>
-          <Toolbar>
-            <Typography color="black" variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/">HOME</Link>
-            </Typography>
-            {(isAccess) ? (
-              <nav className="header__menu">
-                <Link to="/library">Library</Link>
-                <Button style={headerButton} id="sign-out" type="button" onClick={logOut}>Log Out</Button>
-              </nav>
-            ) : (
-              <nav className="header__menu">
-                <Button style={headerButton} id="sign-in" type="button" onClick={() => setOpenL(true)}>Sign in</Button>
-                <Button style={headerButton} id="out" type="button" onClick={() => setOpenR(true)}>Registration</Button>
-              </nav>
-            )}
-          </Toolbar>
+          <Container maxWidth="xl">
+            <Toolbar>
+              <Typography color="black" variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Link to="/">HOME</Link>
+              </Typography>
+              {(isAccess) ? (
+                <nav className="header__menu">
+                  <Link to="/library">Library</Link>
+                  <Button style={headerButton} id="sign-out" type="button" onClick={logOut}>Log Out</Button>
+                </nav>
+              ) : (
+                <nav className="header__menu">
+                  <Button style={headerButton} id="sign-in" type="button" onClick={() => setOpenL(true)}>Sign in</Button>
+                  <Button style={headerButton} id="out" type="button" onClick={() => setOpenR(true)}>Registration</Button>
+                </nav>
+              )}
+            </Toolbar>
+          </Container>
         </AppBar>
       </Box>
       <Modal isOpen={openL} message={inputL} />
       <Modal isOpen={openR} message={inputR} />
     </>
-
   );
 }
 
