@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 export const initialValuesRegistration = {
+  username: '',
   email: '',
   password: '',
 };
@@ -11,6 +12,8 @@ export const initialValuesLogIn = {
 };
 
 export const yupVariable = {
+  nameNumberMax: 30,
+  nameString: 'Must be 30 characters or less',
   emailString: 'Invalid email address',
   emailMaxNumber: 30,
   emailMaxNumberString: 'Must be 30 characters or less',
@@ -25,6 +28,9 @@ export const yupVariable = {
 };
 
 export const validationSchemaRegistration = Yup.object({
+  username: Yup.string()
+    .max(yupVariable.nameNumberMax, yupVariable.nameString)
+    .required(yupVariable.required),
   email: Yup.string()
     .email(yupVariable.emailString)
     .max(yupVariable.emailMaxNumber, yupVariable.emailMaxNumberString)

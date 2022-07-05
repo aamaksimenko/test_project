@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: 'registration',
   initialState,
   reducers: {
     userRegistration(state) {

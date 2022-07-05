@@ -33,6 +33,19 @@ function Registration({ setOpenR }) {
               margin: '20px 0 10px 0',
             }}
             fullWidth
+            id="username"
+            name="username"
+            label="Name"
+            value={formik.values.username}
+            onChange={formik.handleChange}
+            error={formik.touched.username && Boolean(formik.errors.username)}
+            helperText={formik.touched.username && formik.errors.username}
+          />
+          <TextField
+            sx={{
+              margin: '10px 0 10px 0',
+            }}
+            fullWidth
             id="emailR"
             name="email"
             label="Email"
@@ -43,7 +56,7 @@ function Registration({ setOpenR }) {
           />
           <TextField
             sx={{
-              margin: '10px 0 10px 0',
+              margin: '10px 0 20px 0',
             }}
             fullWidth
             id="passwordR"
