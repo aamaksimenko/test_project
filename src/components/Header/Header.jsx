@@ -1,17 +1,18 @@
 import React, {
   memo,
   useState,
-  useCallback,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  Button,
+  Container,
+} from '@mui/material';
 
 import Modal from '../Modal/Modal';
 import Login from '../Login/Login';
@@ -33,11 +34,6 @@ function Header() {
     <Registration setOpenR={setOpenR} />
   );
 
-  const logOut = useCallback(() => {
-    localStorage.clear();
-    dispatch(logoutUser());
-  }, [dispatch]);
-
   return (
     <>
       <Box>
@@ -50,7 +46,7 @@ function Header() {
               {(isAccess) ? (
                 <nav className="header__menu">
                   <Link to="/library">Library</Link>
-                  <Button style={headerButton} id="sign-out" type="button" onClick={logOut}>Log Out</Button>
+                  <Button style={headerButton} id="sign-out" type="button" onClick={() => dispatch(logoutUser())}>Log Out</Button>
                 </nav>
               ) : (
                 <nav className="header__menu">

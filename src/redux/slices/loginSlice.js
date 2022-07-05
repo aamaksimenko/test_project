@@ -2,9 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isLogIn: false,
+  isLogOut: false,
   user: [],
   isAccess: Boolean(localStorage.getItem('token')),
   error: null,
+  errorOut: false,
 };
 
 const loginSlice = createSlice({
@@ -30,7 +32,15 @@ const loginSlice = createSlice({
       state.error = action.payload;
     },
     logoutUser(state) {
+      state.isLogOut = true;
+    },
+    trueLogout(state) {
+      state.isLogOut = true;
       state.isAccess = false;
+      state.user = null;
+    },
+    falseLogout(state, action) {
+      state.errorOut = action.payload;
     },
   },
 });
@@ -40,5 +50,7 @@ export const {
   trueLogIn,
   falseLogIn,
   logoutUser,
+  trueLogout,
+  falseLogout,
 } = loginSlice.actions;
 export default loginSlice.reducer;

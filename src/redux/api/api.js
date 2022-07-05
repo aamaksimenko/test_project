@@ -26,3 +26,8 @@ export const loginUser = async (payload) => {
   const data = await api.post('/users/sign_in', { user: payload });
   return data;
 };
+
+export const logOutUser = async () => {
+  const data = await api.get('/users/sign_out');
+  return data;
+};
