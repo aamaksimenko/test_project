@@ -5,8 +5,6 @@ import logger from 'redux-logger';
 import rootSaga from './sagas/rootSaga';
 import userReducer from './slices/userSlice';
 import loginReducer from './slices/loginSlice';
-import addCompanyReducer from './slices/addCompanySlice';
-import getUserReducer from './slices/getUserSlice';
 
 const configureAppStore = (initialState = {}) => {
   const sagaMiddleware = createSagaMiddleware();
@@ -16,8 +14,6 @@ const configureAppStore = (initialState = {}) => {
     reducer: {
       registration: userReducer,
       login: loginReducer,
-      add_company: addCompanyReducer,
-      user: getUserReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       thunk: false,
