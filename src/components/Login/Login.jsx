@@ -1,22 +1,28 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { func } from 'prop-types';
 
 import { useFormik } from 'formik';
-import { TextField, Button } from '@mui/material';
+import {
+  TextField,
+  Button,
+  Typography,
+} from '@mui/material';
 
 import { initialValuesLogIn, validationSchemaLogIn } from '../constants';
 import { userLogIn } from '../../redux/slices/loginSlice';
+import { ModalWindow } from '../Modal';
 
 import { styleModalButton } from '../../style/style';
 
-function LogIn({ setOpenL }) {
+const LogIn = ({ setOpenLogin }) => {
   const dispatch = useDispatch();
-  const submitLogIn = useCallback((values, { resetForm }) => {
+
+  const submitLogIn = (values, { resetForm }) => {
     dispatch(userLogIn(values));
     resetForm(initialValuesLogIn);
-    setOpenL(false);
-  });
+    setOpenLogin(false);
+  };
 
   const formik = useFormik({
     initialValues: initialValuesLogIn,
@@ -24,9 +30,16 @@ function LogIn({ setOpenL }) {
     onSubmit: submitLogIn,
   });
 
+  const handleCloseLoginWindow = () => {
+    setOpenLogin(false);
+    formik.resetForm();
+  };
+
   return (
-    <>
-      <h2>Sign in</h2>
+    <ModalWindow>
+      <Typography variant="h4" component="div" gutterBottom>
+        Sign in
+      </Typography>
       <form onSubmit={formik.handleSubmit}>
         <div>
           <TextField
@@ -34,7 +47,7 @@ function LogIn({ setOpenL }) {
               margin: '20px 0 10px 0',
             }}
             fullWidth
-            id="emailL"
+            id="emailLogin"
             name="email"
             label="Email"
             value={formik.values.email}
@@ -47,7 +60,7 @@ function LogIn({ setOpenL }) {
               margin: '10px 0 20px 0',
             }}
             fullWidth
-            id="passwordL"
+            id="passwordLogin"
             name="password"
             label="Password"
             type="password"
@@ -56,7 +69,6 @@ function LogIn({ setOpenL }) {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <br />
         </div>
         <div style={styleModalButton}>
           <Button
@@ -70,21 +82,21 @@ function LogIn({ setOpenL }) {
             color="primary"
             variant="contained"
             type="button"
-            onClick={() => { setOpenL(false); formik.resetForm(); }}
+            onClick={() => handleCloseLoginWindow()}
           >
             Close
           </Button>
         </div>
       </form>
-    </>
+    </ModalWindow>
   );
-}
+};
 
 LogIn.defaultProps = {
-  setOpenL: null,
+  setOpenLogin: false,
 };
 LogIn.propTypes = {
-  setOpenL: func,
+  setOpenLogin: func,
 };
 
-export default memo(LogIn);
+export const LogInMemo = memo(LogIn);

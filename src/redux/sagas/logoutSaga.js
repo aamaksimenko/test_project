@@ -1,16 +1,16 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
 import { logOutUser } from '../api/api';
-import { trueLogout, falseLogout } from '../slices/loginSlice';
+import { successLogout, failedLogout } from '../slices/loginSlice';
 import * as actions from '../slices/loginSlice';
 
 function* logoutUser() {
   try {
     yield logOutUser();
-    yield put(trueLogout());
+    yield put(successLogout());
     localStorage.removeItem('token');
   } catch (error) {
-    yield put(falseLogout(error.message));
+    yield put(failedLogout(error.message));
   }
 }
 

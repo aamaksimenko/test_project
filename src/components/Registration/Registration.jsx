@@ -1,31 +1,45 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { func } from 'prop-types';
 import { useFormik } from 'formik';
-import { TextField, Button } from '@mui/material';
+import {
+  TextField,
+  Button,
+  Typography,
+} from '@mui/material';
 
 import { initialValuesRegistration, validationSchemaRegistration } from '../constants';
-import { userRegistration } from '../../redux/slices/userSlice';
+import { userRegistration } from '../../redux/slices/registrationSlice';
+import { ModalWindow } from '../Modal';
 
 import { styleModalButton } from '../../style/style';
 
-function Registration({ setOpenR }) {
+const Registration = ({ setOpenRegistration }) => {
   const dispatch = useDispatch();
-  const submitRegistration = useCallback((values, { resetForm }) => {
+  const submitRegistration = (values, { resetForm }) => {
     dispatch(userRegistration(values));
     resetForm(initialValuesRegistration);
-    setOpenR(false);
-  });
+    setOpenRegistration(false);
+  };
 
   const formik = useFormik({
     initialValues: initialValuesRegistration,
     validationSchema: validationSchemaRegistration,
     onSubmit: submitRegistration,
   });
+
+  const handleCloseRegistrationWindow = () => {
+    setOpenRegistration(false);
+    formik.resetForm();
+  };
+
   return (
-    <>
-      <h2>Registration form</h2>
+    <ModalWindow>
+      <Typography variant="h4" component="div" gutterBottom>
+        Registration form
+      </Typography>
+
       <form onSubmit={formik.handleSubmit}>
         <div>
           <TextField
@@ -46,7 +60,7 @@ function Registration({ setOpenR }) {
               margin: '10px 0 10px 0',
             }}
             fullWidth
-            id="emailR"
+            id="emailRegistration"
             name="email"
             label="Email"
             value={formik.values.email}
@@ -59,7 +73,7 @@ function Registration({ setOpenR }) {
               margin: '10px 0 20px 0',
             }}
             fullWidth
-            id="passwordR"
+            id="passwordRegistration"
             name="password"
             label="Password"
             type="password"
@@ -68,7 +82,6 @@ function Registration({ setOpenR }) {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <br />
         </div>
         <div style={styleModalButton}>
           <Button
@@ -82,22 +95,22 @@ function Registration({ setOpenR }) {
             color="primary"
             variant="contained"
             type="button"
-            onClick={() => { setOpenR(false); formik.resetForm(); }}
+            onClick={() => handleCloseRegistrationWindow()}
           >
             Close
           </Button>
         </div>
       </form>
-    </>
+    </ModalWindow>
   );
-}
+};
 
 Registration.defaultProps = {
-  setOpenR: null,
+  setOpenRegistration: false,
 
 };
 Registration.propTypes = {
-  setOpenR: func,
+  setOpenRegistration: func,
 };
 
-export default memo(Registration);
+export const RegistrationMemo = memo(Registration);

@@ -53,3 +53,20 @@ export const validationSchemaLogIn = Yup.object({
     .min(yupVariable.passwordNumberMin, yupVariable.passwordString)
     .matches(yupVariable.passwordFill, yupVariable.passwordFillText),
 });
+
+export const listsItemMenu = [
+  {
+    item_menu: 'User Page',
+    location: '/user_page',
+  },
+  {
+    item_menu: 'Company page',
+    location: '/company_page',
+  },
+  {
+    item_menu: 'Companies',
+    location: '/companies',
+  },
+];
+
+export const menuId = 'primary-search-account-menu';

@@ -5,7 +5,7 @@ const initialState = {
   error: null,
 };
 
-const userSlice = createSlice({
+const registrationSlice = createSlice({
   name: 'registration',
   initialState,
   reducers: {
@@ -14,17 +14,21 @@ const userSlice = createSlice({
         state.isRegistration = true;
       }
     },
-    trueRegistration(state) {
+    successRegistration(state) {
       if (state.isRegistration === true) {
         state.isRegistration = false;
       }
     },
-    falseRegistration(state, action) {
+    failedRegistration(state, action) {
       state.isRegistration = false;
       state.error = action.payload;
     },
   },
 });
 
-export const { userRegistration, trueRegistration, falseRegistration } = userSlice.actions;
-export default userSlice.reducer;
+export const {
+  userRegistration,
+  successRegistration,
+  failedRegistration,
+} = registrationSlice.actions;
+export default registrationSlice.reducer;

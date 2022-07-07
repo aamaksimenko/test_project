@@ -3,16 +3,16 @@ import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 
 import rootSaga from './sagas/rootSaga';
-import userReducer from './slices/userSlice';
+import registrationReducer from './slices/registrationSlice';
 import loginReducer from './slices/loginSlice';
 
-const configureAppStore = (initialState = {}) => {
+export const configureAppStore = (initialState = {}) => {
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [sagaMiddleware, logger];
 
   const store = configureStore({
     reducer: {
-      registration: userReducer,
+      registration: registrationReducer,
       login: loginReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
@@ -25,5 +25,3 @@ const configureAppStore = (initialState = {}) => {
 
   return store;
 };
-
-export default configureAppStore;

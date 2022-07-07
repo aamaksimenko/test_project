@@ -19,14 +19,14 @@ const loginSlice = createSlice({
         state.isAccess = false;
       }
     },
-    trueLogIn(state, action) {
+    successLogIn(state, action) {
       if (state.isLogIn === true) {
         state.isLogIn = false;
         state.user = action.payload;
         state.isAccess = true;
       }
     },
-    falseLogIn(state, action) {
+    failedLogIn(state, action) {
       state.isLogIn = false;
       state.isAccess = false;
       state.error = action.payload;
@@ -34,12 +34,12 @@ const loginSlice = createSlice({
     logoutUser(state) {
       state.isLogOut = true;
     },
-    trueLogout(state) {
+    successLogout(state) {
       state.isLogOut = true;
       state.isAccess = false;
       state.user = null;
     },
-    falseLogout(state, action) {
+    failedLogout(state, action) {
       state.errorOut = action.payload;
     },
   },
@@ -47,10 +47,10 @@ const loginSlice = createSlice({
 
 export const {
   userLogIn,
-  trueLogIn,
-  falseLogIn,
+  successLogIn,
+  failedLogIn,
   logoutUser,
-  trueLogout,
-  falseLogout,
+  successLogout,
+  failedLogout,
 } = loginSlice.actions;
 export default loginSlice.reducer;

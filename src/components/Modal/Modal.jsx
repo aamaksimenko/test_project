@@ -1,30 +1,55 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import {
-  bool,
   node,
 } from 'prop-types';
 
 import './Modal.css';
 
-function Modal({ isOpen, message }) {
-  if (!isOpen) return null;
-  return createPortal(
-    <div className="portal">
-      <div className="portal__content">
-        <div className="content">{message}</div>
-      </div>
-    </div>,
-    document.body,
-  );
+const modalRoot = document.getElementById('modal-root');
+
+export class ModalWindow extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.el = document.createElement('div');
+  }
+
+  componentDidMount() {
+    modalRoot.appendChild(this.el);
+  }
+
+  componentWillUnmount() {
+    modalRoot.removeChild(this.el);
+  }
+
+  render() {
+    const { children } = this.props;
+    return createPortal(
+      <div className="portal">
+        <div className="portal__content">
+          <div className="content">{children}</div>
+        </div>
+      </div>,
+      this.el,
+    );
+  }
 }
 
-Modal.defaultProps = {
-  isOpen: false,
-  message: null,
+// const Modal = ({ isOpen, children }) => {
+//   if (!isOpen) return null;
+//   return createPortal(
+//     <div className="portal">
+//       <div className="portal__content">
+//         <div className="content">{this.props.children}</div>
+//       </div>
+//     </div>,
+//     document.body,
+//   );
+// };
+
+ModalWindow.defaultProps = {
+  children: null,
 };
-Modal.propTypes = {
-  isOpen: bool,
-  message: node,
+ModalWindow.propTypes = {
+  children: node,
 };
-export default Modal;

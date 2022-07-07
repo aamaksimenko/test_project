@@ -1,0 +1,1 @@
+export { RegistrationMemo } from './Registration';

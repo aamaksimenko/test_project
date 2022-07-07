@@ -1,5 +1,4 @@
 import React, {
-  memo,
   useState,
   useCallback,
 } from 'react';
@@ -19,40 +18,34 @@ import {
 } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
-import Modal from '../Modal/Modal';
-import Login from '../Login/Login';
-import Registration from '../Registration/Registration';
+import { LogInMemo } from '../Login';
+import { RegistrationMemo } from '../Registration';
 import { logoutUser } from '../../redux/slices/loginSlice';
 
 import { headerButton } from '../../style/style';
+import { listsItemMenu, menuId } from '../constants';
 
-function Header() {
+export const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [openR, setOpenR] = useState(false);
-  const [openL, setOpenL] = useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const isMenuOpen = Boolean(anchorEl);
+  const [isOpenRegistration, setOpenRegistration] = useState(false);
+  const [isOpenLogin, setOpenLogin] = useState(false);
+  const [menuElement, setMenuElement] = React.useState(null);
+  const isMenuOpen = Boolean(menuElement);
   const isAccess = useSelector((state) => state.login.isAccess);
-  const listMenu = [
-    ['User Page', '/user_page'],
-    ['Company page', '/company_page'],
-    ['Companies', '/companies'],
-  ];
 
   const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+    setMenuElement(event.currentTarget);
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
+    setMenuElement(null);
   };
 
-  const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
-      anchorEl={anchorEl}
+      menuElement={menuElement}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
@@ -66,25 +59,18 @@ function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {listMenu.map((item) => (
+      {listsItemMenu.map((list) => (
         <MenuItem
-          key={item[0]}
+          key={list.item_menu}
           onClick={() => {
             handleMenuClose();
-            navigate(item[1]);
+            navigate(list.location);
           }}
         >
-          {item[0]}
+          {list.item_menu}
         </MenuItem>
       ))}
     </Menu>
-  );
-
-  const inputL = (
-    <Login setOpenL={setOpenL} />
-  );
-  const inputR = (
-    <Registration setOpenR={setOpenR} />
   );
 
   const logOut = useCallback(() => {
@@ -121,9 +107,8 @@ function Header() {
                 </nav>
               ) : (
                 <nav className="header__menu">
-                  <Button style={headerButton} id="sign-in" type="button" onClick={() => setOpenL(true)}>Sign in</Button>
-                  <Button style={headerButton} id="out" type="button" onClick={() => setOpenR(true)}>Registration</Button>
-
+                  <Button style={headerButton} id="sign-in" type="button" onClick={() => setOpenLogin(true)}>Sign in</Button>
+                  <Button style={headerButton} id="out" type="button" onClick={() => setOpenRegistration(true)}>Registration</Button>
                 </nav>
               )}
             </Toolbar>
@@ -131,10 +116,8 @@ function Header() {
         </AppBar>
         {renderMenu}
       </Box>
-      <Modal isOpen={openL} message={inputL} />
-      <Modal isOpen={openR} message={inputR} />
+      {isOpenLogin && <LogInMemo setOpenLogin={setOpenLogin} />}
+      {isOpenRegistration && <RegistrationMemo setOpenRegistration={setOpenRegistration} />}
     </>
   );
-}
-
-export default memo(Header);
+};

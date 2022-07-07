@@ -1,17 +1,17 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
-import { regUser } from '../api/api';
-import { trueRegistration, falseRegistration } from '../slices/userSlice';
+import { registrationUserApi } from '../api/api';
+import { successRegistration, failedRegistration } from '../slices/registrationSlice';
 import { userLogIn } from '../slices/loginSlice';
-import * as actions from '../slices/userSlice';
+import * as actions from '../slices/registrationSlice';
 
 function* registrationUser({ payload }) {
   try {
-    const data = yield regUser(payload);
-    yield put(trueRegistration(data.data));
+    const data = yield registrationUserApi(payload);
+    yield put(successRegistration(data.data));
     yield put(userLogIn(payload));
   } catch (error) {
-    yield put(falseRegistration(error.message));
+    yield put(failedRegistration(error.message));
   }
 }
 
