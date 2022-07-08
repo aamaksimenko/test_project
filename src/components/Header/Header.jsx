@@ -76,17 +76,6 @@ export const Header = () => {
                 <nav className="header__menu">
                   <Button style={headerButton} id="sign-in" type="button" onClick={handlerOpenLogin}>Sign in</Button>
                   <Button style={headerButton} id="out" type="button" onClick={handlerOpenRegistration}>Registration</Button>
-                  <IconButton
-                    size="large"
-                    edge="end"
-                    aria-label="account of current user"
-                    aria-controls={menuId}
-                    aria-haspopup="true"
-                    onClick={handleProfileMenuOpen}
-                    color="inherit"
-                  >
-                    <AccountCircle />
-                  </IconButton>
                 </nav>
               )}
             </Toolbar>

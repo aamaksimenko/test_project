@@ -15,6 +15,6 @@ function* registrationUser({ payload }) {
   }
 }
 
-export function* listenerUserSaga() {
+export function* listenerRegistrationUserSaga() {
   yield takeEvery(actions.userRegistration, registrationUser);
 }

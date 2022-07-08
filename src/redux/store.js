@@ -2,7 +2,7 @@ import createSagaMiddleware from 'redux-saga';
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 
-import rootSaga from './sagas/rootSaga';
+import { rootSaga } from './sagas/rootSaga';
 import registrationReducer from './slices/registrationSlice';
 import loginReducer from './slices/loginSlice';
 
