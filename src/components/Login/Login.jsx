@@ -93,7 +93,7 @@ const LogIn = ({ setOpenLogin }) => {
 };
 
 LogIn.defaultProps = {
-  setOpenLogin: false,
+  setOpenLogin: () => {},
 };
 LogIn.propTypes = {
   setOpenLogin: func,

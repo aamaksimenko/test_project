@@ -35,18 +35,6 @@ export class ModalWindow extends React.PureComponent {
   }
 }
 
-// const Modal = ({ isOpen, children }) => {
-//   if (!isOpen) return null;
-//   return createPortal(
-//     <div className="portal">
-//       <div className="portal__content">
-//         <div className="content">{this.props.children}</div>
-//       </div>
-//     </div>,
-//     document.body,
-//   );
-// };
-
 ModalWindow.defaultProps = {
   children: null,
 };

@@ -106,7 +106,7 @@ const Registration = ({ setOpenRegistration }) => {
 };
 
 Registration.defaultProps = {
-  setOpenRegistration: false,
+  setOpenRegistration: () => {},
 
 };
 Registration.propTypes = {

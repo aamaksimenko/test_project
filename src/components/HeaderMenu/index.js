@@ -1,0 +1,1 @@
+export { HeaderMenuMemo } from './HeaderMenu';

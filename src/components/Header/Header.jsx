@@ -12,8 +12,6 @@ import {
   Typography,
   Button,
   Container,
-  Menu,
-  MenuItem,
   IconButton,
 } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -23,7 +21,8 @@ import { RegistrationMemo } from '../Registration';
 import { logoutUser } from '../../redux/slices/loginSlice';
 
 import { headerButton } from '../../style/style';
-import { listsItemMenu, menuId } from '../constants';
+import { menuId } from '../constants';
+import { HeaderMenuMemo } from '../HeaderMenu';
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -31,47 +30,12 @@ export const Header = () => {
 
   const [isOpenRegistration, setOpenRegistration] = useState(false);
   const [isOpenLogin, setOpenLogin] = useState(false);
-  const [menuElement, setMenuElement] = React.useState(null);
-  const isMenuOpen = Boolean(menuElement);
+  const [menuElement, setMenuElement] = useState(null);
   const isAccess = useSelector((state) => state.login.isAccess);
 
   const handleProfileMenuOpen = (event) => {
     setMenuElement(event.currentTarget);
   };
-
-  const handleMenuClose = () => {
-    setMenuElement(null);
-  };
-
-  const renderMenu = (
-    <Menu
-      menuElement={menuElement}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      {listsItemMenu.map((list) => (
-        <MenuItem
-          key={list.item_menu}
-          onClick={() => {
-            handleMenuClose();
-            navigate(list.location);
-          }}
-        >
-          {list.item_menu}
-        </MenuItem>
-      ))}
-    </Menu>
-  );
 
   const logOut = useCallback(() => {
     dispatch(logoutUser());
@@ -114,7 +78,7 @@ export const Header = () => {
             </Toolbar>
           </Container>
         </AppBar>
-        {renderMenu}
+        <HeaderMenuMemo menuElement={menuElement} setMenuElement={setMenuElement} />
       </Box>
       {isOpenLogin && <LogInMemo setOpenLogin={setOpenLogin} />}
       {isOpenRegistration && <RegistrationMemo setOpenRegistration={setOpenRegistration} />}
