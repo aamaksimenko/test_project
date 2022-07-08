@@ -1,0 +1,1 @@
+export { CompanyMemo } from './Company';

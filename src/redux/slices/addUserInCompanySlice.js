@@ -31,8 +31,8 @@ const addUserInCompanySlice = createSlice({
 });
 
 export const {
-  addUserCompany,
-  successAddUserCompany,
-  failedAddUserCompany,
+  addUserInCompany,
+  successAddUserInCompany,
+  failedAddUserInCompany,
 } = addUserInCompanySlice.actions;
 export default addUserInCompanySlice.reducer;
