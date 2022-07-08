@@ -6,23 +6,23 @@ const initialState = {
   error: null,
 };
 
-const addUserSlice = createSlice({
+const addUserInCompanySlice = createSlice({
   name: 'add_user_company',
   initialState,
   reducers: {
-    addUserCompany(state) {
+    addUserInCompany(state) {
       if (state.isAccess === true) {
         state.isAddUser = true;
         state.isAccess = false;
       }
     },
-    successAddUserCompany(state) {
+    successAddUserInCompany(state) {
       if (state.isAddUser === true) {
         state.isAddUser = false;
         state.isAccess = true;
       }
     },
-    failedAddUserCompany(state, action) {
+    failedAddUserInCompany(state, action) {
       state.isAddUser = false;
       state.isAccess = false;
       state.error = action.payload;
@@ -30,13 +30,9 @@ const addUserSlice = createSlice({
   },
 });
 
-// success
-// failed
-
-
 export const {
   addUserCompany,
   successAddUserCompany,
   failedAddUserCompany,
-} = addUserSlice.actions;
-export default addUserSlice.reducer;
+} = addUserInCompanySlice.actions;
+export default addUserInCompanySlice.reducer;

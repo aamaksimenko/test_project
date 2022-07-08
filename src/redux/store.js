@@ -6,7 +6,7 @@ import { rootSaga } from './sagas/rootSaga';
 import registrationReducer from './slices/registrationSlice';
 import loginReducer from './slices/loginSlice';
 import addCompanyReducer from './slices/addCompanySlice';
-import addUserReducer from './slices/addUserSlice';
+import addUserInCompanyReducer from './slices/addUserInCompanySlice';
 import getCompaniesReducer from './slices/getCompaniesSlice';
 import getUsersInCompanyReducer from './slices/getUsersInCompanySlice';
 
@@ -19,7 +19,7 @@ export const configureAppStore = (initialState = {}) => {
       registration: registrationReducer,
       login: loginReducer,
       add_company: addCompanyReducer,
-      add_user_company: addUserReducer,
+      add_user_company: addUserInCompanyReducer,
       get_companies: getCompaniesReducer,
       get_users_company: getUsersInCompanyReducer,
     },
