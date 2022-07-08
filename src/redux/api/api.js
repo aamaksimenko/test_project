@@ -17,13 +17,13 @@ api.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-export const registrationUserApi = async (user) => {
-  const data = await api.post('/users', { user });
+export const registrationUserApi = async ({ username, email, password }) => {
+  const data = await api.post('/users', { user: { username, email, password } });
   return data;
 };
 
-export const loginUser = async ({ user }) => {
-  const data = await api.post('/users/sign_in', { user });
+export const loginUser = async ({ email, password }) => {
+  const data = await api.post('/users/sign_in', { user: { email, password } });
   return data;
 };
 

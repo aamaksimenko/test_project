@@ -7,8 +7,8 @@ import * as actions from '../slices/registrationSlice';
 
 function* registrationUser({ payload }) {
   try {
-    const data = yield registrationUserApi(payload);
-    yield put(successRegistration(data.data));
+    const { data } = yield registrationUserApi(payload);
+    yield put(successRegistration(data));
     yield put(userLogIn(payload));
   } catch (error) {
     yield put(failedRegistration(error.message));

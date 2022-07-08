@@ -6,9 +6,9 @@ import * as actions from '../slices/loginSlice';
 
 function* startLoginUser({ payload }) {
   try {
-    const data = yield loginUser(payload);
-    yield put(successLogIn(data.data));
-    localStorage.setItem('token', data.headers.authorization);
+    const response = yield loginUser(payload);
+    yield put(successLogIn(response.data));
+    localStorage.setItem('token', response.headers.authorization);
   } catch (error) {
     yield put(failedLogIn(error.message));
   }
