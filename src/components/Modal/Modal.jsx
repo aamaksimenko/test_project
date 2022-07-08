@@ -35,9 +35,6 @@ export class ModalWindow extends React.PureComponent {
   }
 }
 
-ModalWindow.defaultProps = {
-  children: null,
-};
 ModalWindow.propTypes = {
-  children: node,
+  children: node.isRequired,
 };

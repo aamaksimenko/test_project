@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   func,
-  node,
+  instanceOf,
 } from 'prop-types';
 
 import {
@@ -22,7 +22,7 @@ const HeaderMenu = ({ menuElement, setMenuElement }) => {
   };
   return (
     <Menu
-      menuelement={menuElement}
+      anchorEl={menuElement}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
@@ -53,11 +53,11 @@ const HeaderMenu = ({ menuElement, setMenuElement }) => {
 
 HeaderMenu.defaultProps = {
   menuElement: null,
-  setMenuElement: () => {},
 };
+
 HeaderMenu.propTypes = {
-  menuElement: node,
-  setMenuElement: func,
+  menuElement: instanceOf(Element),
+  setMenuElement: func.isRequired,
 };
 
 export const HeaderMenuMemo = memo(HeaderMenu);

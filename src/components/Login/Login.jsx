@@ -92,11 +92,8 @@ const LogIn = ({ setOpenLogin }) => {
   );
 };
 
-LogIn.defaultProps = {
-  setOpenLogin: () => {},
-};
 LogIn.propTypes = {
-  setOpenLogin: func,
+  setOpenLogin: func.isRequired,
 };
 
 export const LogInMemo = memo(LogIn);

@@ -105,12 +105,8 @@ const Registration = ({ setOpenRegistration }) => {
   );
 };
 
-Registration.defaultProps = {
-  setOpenRegistration: () => {},
-
-};
 Registration.propTypes = {
-  setOpenRegistration: func,
+  setOpenRegistration: func.isRequired,
 };
 
 export const RegistrationMemo = memo(Registration);
