@@ -1,12 +1,12 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
-import { loginUser } from '../api/api';
+import { loginUserRequest } from '../api/api';
 import { successLogIn, failedLogIn } from '../slices/loginSlice';
 import * as actions from '../slices/loginSlice';
 
-function* startLoginUser({ payload }) {
+function* loginUser({ payload }) {
   try {
-    const response = yield loginUser(payload);
+    const response = yield loginUserRequest(payload);
     yield put(successLogIn(response.data));
     localStorage.setItem('token', response.headers.authorization);
   } catch (error) {
@@ -14,8 +14,6 @@ function* startLoginUser({ payload }) {
   }
 }
 
-function* listenerStartLoginSaga() {
-  yield takeEvery(actions.userLogIn, startLoginUser);
+export function* listenerLoginSaga() {
+  yield takeEvery(actions.userLogIn, loginUser);
 }
-
-export default listenerStartLoginSaga;

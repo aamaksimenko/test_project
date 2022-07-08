@@ -95,7 +95,7 @@ const Registration = ({ setOpenRegistration }) => {
             color="primary"
             variant="contained"
             type="button"
-            onClick={() => handleCloseRegistrationWindow()}
+            onClick={handleCloseRegistrationWindow}
           >
             Close
           </Button>

@@ -82,7 +82,7 @@ const LogIn = ({ setOpenLogin }) => {
             color="primary"
             variant="contained"
             type="button"
-            onClick={() => handleCloseLoginWindow()}
+            onClick={handleCloseLoginWindow}
           >
             Close
           </Button>

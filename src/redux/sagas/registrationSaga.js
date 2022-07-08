@@ -1,13 +1,13 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
-import { registrationUserApi } from '../api/api';
+import { registrationUserRequest } from '../api/api';
 import { successRegistration, failedRegistration } from '../slices/registrationSlice';
 import { userLogIn } from '../slices/loginSlice';
 import * as actions from '../slices/registrationSlice';
 
 function* registrationUser({ payload }) {
   try {
-    const { data } = yield registrationUserApi(payload);
+    const { data } = yield registrationUserRequest(payload);
     yield put(successRegistration(data));
     yield put(userLogIn(payload));
   } catch (error) {
@@ -15,8 +15,6 @@ function* registrationUser({ payload }) {
   }
 }
 
-function* listenerUserSaga() {
+export function* listenerUserSaga() {
   yield takeEvery(actions.userRegistration, registrationUser);
 }
-
-export default listenerUserSaga;

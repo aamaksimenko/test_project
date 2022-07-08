@@ -56,15 +56,15 @@ export const validationSchemaLogIn = Yup.object({
 
 export const listsItemMenu = [
   {
-    item_menu: 'User Page',
+    itemMenu: 'User Page',
     location: '/user_page',
   },
   {
-    item_menu: 'Company page',
+    itemMenu: 'Company page',
     location: '/company_page',
   },
   {
-    item_menu: 'Companies',
+    itemMenu: 'Companies',
     location: '/companies',
   },
 ];

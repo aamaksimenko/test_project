@@ -38,13 +38,13 @@ const HeaderMenu = ({ menuElement, setMenuElement }) => {
     >
       {listsItemMenu.map((list) => (
         <MenuItem
-          key={list.item_menu}
+          key={list.itemMenu}
           onClick={() => {
             handleMenuClose();
             navigate(list.location);
           }}
         >
-          {list.item_menu}
+          {list.itemMenu}
         </MenuItem>
       ))}
     </Menu>

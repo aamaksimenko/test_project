@@ -1,12 +1,12 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
-import { logOutUser } from '../api/api';
+import { logOutUserRequest } from '../api/api';
 import { successLogout, failedLogout } from '../slices/loginSlice';
 import * as actions from '../slices/loginSlice';
 
 function* logoutUser() {
   try {
-    yield logOutUser();
+    yield logOutUserRequest();
     yield put(successLogout());
     localStorage.removeItem('token');
   } catch (error) {
@@ -14,8 +14,6 @@ function* logoutUser() {
   }
 }
 
-function* listenerLogoutSaga() {
+export function* listenerLogoutSaga() {
   yield takeEvery(actions.logoutUser, logoutUser);
 }
-
-export default listenerLogoutSaga;

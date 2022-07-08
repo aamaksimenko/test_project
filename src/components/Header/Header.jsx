@@ -42,6 +42,9 @@ export const Header = () => {
     navigate('/');
   }, [dispatch]);
 
+  const handlerOpenRegistration = () => setOpenRegistration(true);
+  const handlerOpenLogin = () => setOpenLogin(true);
+
   return (
     <>
       <Box>
@@ -71,8 +74,8 @@ export const Header = () => {
                 </nav>
               ) : (
                 <nav className="header__menu">
-                  <Button style={headerButton} id="sign-in" type="button" onClick={() => setOpenLogin(true)}>Sign in</Button>
-                  <Button style={headerButton} id="out" type="button" onClick={() => setOpenRegistration(true)}>Registration</Button>
+                  <Button style={headerButton} id="sign-in" type="button" onClick={handlerOpenLogin}>Sign in</Button>
+                  <Button style={headerButton} id="out" type="button" onClick={handlerOpenRegistration}>Registration</Button>
                   <IconButton
                     size="large"
                     edge="end"
