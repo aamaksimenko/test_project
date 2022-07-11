@@ -1,0 +1,1 @@
+export { CompanyPageMemo } from './CompanyPage';

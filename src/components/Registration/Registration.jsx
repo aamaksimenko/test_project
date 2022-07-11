@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { func } from 'prop-types';
 import { useFormik } from 'formik';
@@ -17,10 +18,13 @@ import { styleModalButton } from '../../style/style';
 
 const Registration = ({ setOpenRegistration }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const submitRegistration = (values, { resetForm }) => {
     dispatch(userRegistration(values));
     resetForm(initialValuesRegistration);
     setOpenRegistration(false);
+    navigate('/companies');
   };
 
   const formik = useFormik({

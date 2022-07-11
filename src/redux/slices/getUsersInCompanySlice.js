@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isLoading: false,
-  user: [],
+  company: [],
   error: null,
 };
 
@@ -17,7 +17,7 @@ const getUsersInCompanySlice = createSlice({
     },
     successGetUser(state, action) {
       state.isLoading = false;
-      state.user = action.payload;
+      state.company = action.payload;
     },
     failedGetUser(state, action) {
       state.isLoading = false;

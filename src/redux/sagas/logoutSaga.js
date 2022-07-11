@@ -8,7 +8,7 @@ function* logoutUser() {
   try {
     yield logOutUserRequest();
     yield put(successLogout());
-    localStorage.removeItem('token');
+    localStorage.clear();
   } catch (error) {
     yield put(failedLogout(error.message));
   }
