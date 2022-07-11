@@ -18,10 +18,10 @@ export const configureAppStore = (initialState = {}) => {
     reducer: {
       registration: registrationReducer,
       login: loginReducer,
-      add_company: addCompanyReducer,
-      add_user_company: addUserInCompanyReducer,
-      get_companies: getCompaniesReducer,
-      get_users_company: getUsersInCompanyReducer,
+      addCompany: addCompanyReducer,
+      addUserCompany: addUserInCompanyReducer,
+      getCompanies: getCompaniesReducer,
+      getUsersCompany: getUsersInCompanyReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       thunk: false,

@@ -18,7 +18,7 @@ const CompanyPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const getCompanyInfo = useSelector((state) => state.get_users_company);
+  const getCompanyInfo = useSelector((state) => state.getUsersCompany);
   const isLoading = getCompanyInfo?.isLoading;
   const companyName = getCompanyInfo?.company.title;
   const companyUsers = getCompanyInfo?.company.users;

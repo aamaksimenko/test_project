@@ -10,8 +10,8 @@ import { getUserCompany } from '../../redux/slices/getCompaniesSlice';
 export const Companies = () => {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector((state) => state.get_companies.isLoading);
-  const { company } = useSelector((state) => state.get_companies);
+  const isLoading = useSelector((state) => state.getCompanies.isLoading);
+  const { company } = useSelector((state) => state.getCompanies);
 
   useEffect(() => {
     dispatch(getUserCompany());

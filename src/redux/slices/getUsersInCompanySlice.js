@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const getUsersInCompanySlice = createSlice({
-  name: 'get_users_company',
+  name: 'getUsersCompany',
   initialState,
   reducers: {
     getUser(state) {
