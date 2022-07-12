@@ -11,6 +11,14 @@ export const initialValuesLogIn = {
   password: '',
 };
 
+export const initialValuesAddCompany = {
+  title: '',
+};
+
+export const initialValuesAddUser = {
+  email: '',
+};
+
 export const yupVariable = {
   nameNumberMax: 30,
   nameString: 'Must be 30 characters or less',
@@ -22,8 +30,11 @@ export const yupVariable = {
   passwordRequired: 'No password provided.',
   passwordNumberMin: 6,
   passwordFill: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_!@#$%^&*])(?=.{6,})/,
-  passwordFillText: 'Must Contain 6 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character',
+  passwordFillText:
+    'Must Contain 6 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character',
   passwordString: 'Password is too short - should be 6 chars minimum.',
+  titleCompany: 50,
+  titleCompanyString: 'Must be 50 characters or less',
   required: 'Required',
 };
 
@@ -54,18 +65,32 @@ export const validationSchemaLogIn = Yup.object({
     .matches(yupVariable.passwordFill, yupVariable.passwordFillText),
 });
 
+export const validationSchemaAddCompany = Yup.object({
+  title: Yup.string()
+    .max(yupVariable.titleCompany, yupVariable.titleCompanyString)
+    .required(yupVariable.required),
+});
+
+export const validationSchemaAddUser = Yup.object({
+  email: Yup.string()
+    .email(yupVariable.emailString)
+    .max(yupVariable.emailMaxNumber, yupVariable.emailMaxNumberString)
+    .matches(yupVariable.emailFill, yupVariable.emailFillText)
+    .required(yupVariable.required),
+});
+
 export const listsItemMenu = [
   {
     itemMenu: 'User Page',
     location: '/user_page',
   },
   {
-    itemMenu: 'Company page',
-    location: '/company_page',
-  },
-  {
     itemMenu: 'Companies',
     location: '/companies',
+  },
+  {
+    itemMenu: 'Library',
+    location: '/library',
   },
 ];
 

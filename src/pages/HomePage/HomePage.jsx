@@ -29,9 +29,15 @@ export const HomePage = () => (
             fontFamily: 'Titan one',
           }}
         >
-          We provide a convenient tool for working with documents with search by key information
+          We provide a convenient tool for working with documents with search by
+          key information
         </Typography>
-        <Typography variant="h5" component="div" gutterBottom sx={{ flex: '0 1 400px', margin: '15px', bgcolor: 'green' }}>
+        <Typography
+          variant="h5"
+          component="div"
+          gutterBottom
+          sx={{ flex: '0 1 400px', margin: '15px', bgcolor: 'green' }}
+        >
           Upload and edit your documents or view existing ones
         </Typography>
       </Box>

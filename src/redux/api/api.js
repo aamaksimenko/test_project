@@ -31,3 +31,23 @@ export const logOutUserRequest = async () => {
   const data = await api.get('/users/sign_out');
   return data;
 };
+
+export const addCompanyRequest = async ({ title }) => {
+  const data = await api.post('/companies', { title });
+  return data;
+};
+
+export const addUserInCompanyRequest = async ({ id, email }) => {
+  const data = await api.post(`/companies/${id}`, { email });
+  return data;
+};
+
+export const getCompaniesRequest = async () => {
+  const data = await api.get('/companies');
+  return data;
+};
+
+export const getUsersInCompanyRequest = async (id) => {
+  const data = await api.get(`/companies/${id}`);
+  return data;
+};

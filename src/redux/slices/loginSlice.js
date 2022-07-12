@@ -6,7 +6,7 @@ const initialState = {
   user: [],
   isAccess: Boolean(localStorage.getItem('token')),
   error: null,
-  errorOut: false,
+  errorOut: null,
 };
 
 const loginSlice = createSlice({

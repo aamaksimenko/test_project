@@ -56,9 +56,6 @@ export const Header = () => {
               </Typography>
               {(isAccess) ? (
                 <nav className="header__menu">
-                  <Button style={headerButton} id="library" type="button">
-                    <Link to="/library">Library</Link>
-                  </Button>
                   <Button style={headerButton} id="sign-out" type="button" onClick={logOut}>Log Out</Button>
                   <IconButton
                     size="large"

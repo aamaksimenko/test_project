@@ -1,0 +1,1 @@
+export { UserMemo } from './User';
