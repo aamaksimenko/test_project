@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import {
   Container,
@@ -12,20 +12,20 @@ import {
 
 import { AddUserMemo } from '../../components/AddUser';
 import { UserMemo } from '../../components/User';
-import { getUser } from '../../redux/slices/getUsersInCompanySlice';
+import { getUsers } from '../../redux/slices/getUsersInCompanySlice';
 
 const CompanyPage = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const { id } = useParams();
 
-  const getCompanyInfo = useSelector((state) => state.getUsersCompany);
-  const isLoading = getCompanyInfo?.isLoading;
-  const companyName = getCompanyInfo?.company.title;
-  const companyUsers = getCompanyInfo?.company.users;
+  const companyInfo = useSelector((state) => state.getCompanyUsers);
+  const isLoading = companyInfo?.isLoading;
+  const companyName = companyInfo?.company.title;
+  const companyUsers = companyInfo?.company.users;
 
   useEffect(() => {
-    dispatch(getUser(location.pathname.slice(14)));
-  }, [dispatch, location]);
+    dispatch(getUsers(id));
+  }, [dispatch, id]);
 
   const [isOpenAddUser, setOpenAddUser] = useState(false);
 
@@ -51,12 +51,12 @@ const CompanyPage = () => {
             Users
           </Typography>
           {companyUsers?.length &&
-            companyUsers.map((item) => (
+            companyUsers.map((user) => (
               <UserMemo
-                key={item.id}
-                name={item.username}
-                email={item.email}
-                id={item.id}
+                key={user.id}
+                name={user.username}
+                email={user.email}
+                id={user.id}
               />
             ))}
         </Box>

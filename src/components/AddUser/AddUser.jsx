@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { func } from 'prop-types';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useFormik } from 'formik';
 import { TextField, Button, Typography } from '@mui/material';
@@ -9,19 +9,18 @@ import { TextField, Button, Typography } from '@mui/material';
 import { initialValuesAddUser, validationSchemaAddUser } from '../constants';
 import { addUserInCompany } from '../../redux/slices/addUserInCompanySlice';
 import { ModalWindow } from '../Modal';
-import { getUser } from '../../redux/slices/getUsersInCompanySlice';
+import { getUsers } from '../../redux/slices/getUsersInCompanySlice';
 
 import { styleModalButton } from '../../style/style';
 
 const AddUser = ({ setOpenAddUser }) => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const { id } = useParams();
   
   const submitAddUser = (values, { resetForm }) => {
-    const id = location.pathname.slice(14);
     dispatch(addUserInCompany({ ...values, id }));
     resetForm(initialValuesAddUser);
-    dispatch(getUser(id));
+    dispatch(getUsers(id));
     setOpenAddUser(false);
   };
 
@@ -49,7 +48,7 @@ const AddUser = ({ setOpenAddUser }) => {
             sx={{
               margin: '10px 0 20px 0',
             }}
-            id="user_email"
+            id="userEmail"
             name="email"
             label="User email"
             value={formik.values.email}

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isLoading: false,
-  company: [],
+  companies: [],
   error: null,
 };
 
@@ -10,16 +10,16 @@ const getCompaniesSlice = createSlice({
   name: 'getCompanies',
   initialState,
   reducers: {
-    getUserCompany(state) {
+    getCompanies(state) {
       if (state.isLoading === false) {
         state.isLoading = true;
       }
     },
-    successGetUserCompany(state, action) {
+    successGetCompanies(state, action) {
       state.isLoading = false;
-      state.company = action.payload;
+      state.companies = action.payload;
     },
-    failedGetUserCompany(state, action) {
+    failedGetCompanies(state, action) {
       state.isLoading = false;
       state.error = action.payload;
     },
@@ -27,8 +27,8 @@ const getCompaniesSlice = createSlice({
 });
 
 export const {
-  getUserCompany,
-  successGetUserCompany,
-  failedGetUserCompany,
+  getCompanies,
+  successGetCompanies,
+  failedGetCompanies,
 } = getCompaniesSlice.actions;
 export default getCompaniesSlice.reducer;

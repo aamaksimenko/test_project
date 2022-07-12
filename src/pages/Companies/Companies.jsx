@@ -5,16 +5,16 @@ import { Container, Box, Typography, CircularProgress } from '@mui/material';
 
 import { CompanyMemo } from '../../components/Company';
 
-import { getUserCompany } from '../../redux/slices/getCompaniesSlice';
+import { getCompanies } from '../../redux/slices/getCompaniesSlice';
 
 export const Companies = () => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector((state) => state.getCompanies.isLoading);
-  const { company } = useSelector((state) => state.getCompanies);
+  const { companies } = useSelector((state) => state.getCompanies);
 
   useEffect(() => {
-    dispatch(getUserCompany());
+    dispatch(getCompanies());
   }, [dispatch]);
 
   if (isLoading) {
@@ -29,9 +29,9 @@ export const Companies = () => {
         </Typography>
       </Box>
       <Box>
-        {company.length ? (
-          company.map((item) => (
-            <CompanyMemo key={item.id} title={item.title} id={item.id} />
+        {companies.length ? (
+          companies.map((company) => (
+            <CompanyMemo key={company.id} title={company.title} id={company.id} />
           ))
         ) : (
           <Typography component="div" variant="h1">

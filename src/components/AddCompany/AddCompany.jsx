@@ -48,7 +48,7 @@ const AddCompany = ({ setOpenAddCompany }) => {
               margin: '20px 0 20px 0',
             }}
             fullWidth
-            id="title_company"
+            id="titleCompany"
             name="title"
             label="Company name"
             value={formik.values.title}

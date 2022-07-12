@@ -1,18 +1,18 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
 import { getUsersInCompanyRequest } from '../api/api';
-import { successGetUser, failedGetUser } from '../slices/getUsersInCompanySlice';
+import { successGetUsers, failedGetUsers } from '../slices/getUsersInCompanySlice';
 import * as actions from '../slices/getUsersInCompanySlice';
 
-function* getUserInCompany({ payload }) {
+function* getUsersInCompany({ payload }) {
   try {
     const { data } = yield getUsersInCompanyRequest(payload);
-    yield put(successGetUser(data));
+    yield put(successGetUsers(data));
   } catch (error) {
-    yield put(failedGetUser(error.message));
+    yield put(failedGetUsers(error.message));
   }
 }
 
-export function* listenerGetUserInCompanySaga() {
-  yield takeEvery(actions.getUser, getUserInCompany);
+export function* listenerGetUsersInCompanySaga() {
+  yield takeEvery(actions.getUsers, getUsersInCompany);
 }

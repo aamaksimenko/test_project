@@ -7,19 +7,19 @@ const initialState = {
 };
 
 const getUsersInCompanySlice = createSlice({
-  name: 'getUsersCompany',
+  name: 'getCompanyUsers',
   initialState,
   reducers: {
-    getUser(state) {
+    getUsers(state) {
       if (state.isLoading === false) {
         state.isLoading = true;
       }
     },
-    successGetUser(state, action) {
+    successGetUsers(state, action) {
       state.isLoading = false;
       state.company = action.payload;
     },
-    failedGetUser(state, action) {
+    failedGetUsers(state, action) {
       state.isLoading = false;
       state.error = action.payload;
     },
@@ -27,8 +27,8 @@ const getUsersInCompanySlice = createSlice({
 });
 
 export const {
-  getUser,
-  successGetUser,
-  failedGetUser,
+  getUsers,
+  successGetUsers,
+  failedGetUsers,
 } = getUsersInCompanySlice.actions;
 export default getUsersInCompanySlice.reducer;

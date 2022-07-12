@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import { Container, Box, Typography, Button } from '@mui/material';
 
@@ -7,11 +7,16 @@ import { AddCompanyMemo } from '../../components/AddCompany';
 
 export const UserPage = () => {
   const location = useLocation();
+  const { id } = useParams();
+  
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
   const [isOpenAddCompany, setOpenAddCompany] = useState(false);
 
   const handlerOpenAddCompany = () => setOpenAddCompany(true);
+
+  const isShowButtonAddCompany =
+    Number(id) === currentUser.id || location.pathname === '/user_page';
 
   return (
     <>
@@ -21,9 +26,9 @@ export const UserPage = () => {
             UserPage
           </Typography>
 
-          {((+location.pathname.slice(11) === currentUser.id) || (+location.pathname.slice(11) === 0)) && (
+          {isShowButtonAddCompany && (
             <Button
-              id="add_company"
+              id="addCompany"
               type="button"
               onClick={handlerOpenAddCompany}
             >
