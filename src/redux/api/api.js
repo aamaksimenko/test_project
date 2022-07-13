@@ -51,3 +51,8 @@ export const getUsersInCompanyRequest = async (id) => {
   const data = await api.get(`/companies/${id}`);
   return data;
 };
+
+export const getAllDocumentsRequest = async () => {
+  const data = await api.get('/documents');
+  return data;
+};

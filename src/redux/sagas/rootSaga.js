@@ -7,6 +7,7 @@ import { listenerAddCompanySaga } from './addCompanySaga';
 import { listenerAddUserInCompanySaga } from './addUserInCompanySaga';
 import { listenerGetCompaniesSaga } from './getCompaniesSaga';
 import { listenerGetUsersInCompanySaga } from './getUserInCompanySaga';
+import { listenerGetAllDocumentsSaga } from './getAllDocumentsSaga';
 
 export function* rootSaga() {
   yield all([
@@ -17,5 +18,6 @@ export function* rootSaga() {
     listenerAddUserInCompanySaga(),
     listenerGetCompaniesSaga(),
     listenerGetUsersInCompanySaga(),
+    listenerGetAllDocumentsSaga(),
   ]);
 }

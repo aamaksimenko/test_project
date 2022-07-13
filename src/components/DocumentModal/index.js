@@ -1,0 +1,1 @@
+export { DocumentModalMemo } from './DocumentModal';

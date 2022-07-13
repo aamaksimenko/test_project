@@ -9,6 +9,7 @@ import addCompanyReducer from './slices/addCompanySlice';
 import addUserInCompanyReducer from './slices/addUserInCompanySlice';
 import getCompaniesReducer from './slices/getCompaniesSlice';
 import getUsersInCompanyReducer from './slices/getUsersInCompanySlice';
+import getAllDocumentsReducer from './slices/getAllDocumentsSlice';
 
 export const configureAppStore = (initialState = {}) => {
   const sagaMiddleware = createSagaMiddleware();
@@ -22,6 +23,7 @@ export const configureAppStore = (initialState = {}) => {
       addUserCompany: addUserInCompanyReducer,
       getCompanies: getCompaniesReducer,
       getCompanyUsers: getUsersInCompanyReducer,
+      getAllDocuments: getAllDocumentsReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       thunk: false,

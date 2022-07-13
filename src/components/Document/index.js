@@ -1,0 +1,1 @@
+export { DocumentMemo } from './Document';
