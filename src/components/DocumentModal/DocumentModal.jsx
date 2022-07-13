@@ -1,16 +1,32 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { func, string, number } from 'prop-types';
 import { Button, Typography } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { ModalWindow } from '../Modal';
+import { getPagesInDocument } from '../../redux/slices/getPagesInDocumentSlice';
 
 const DocumentModal = ({ setOpenDocumentWindow, urlDocument, id, name }) => {
+  const dispatch = useDispatch();
+
+  const { pages } = useSelector((state) => state.getPagesInDocument);
+
+  console.log(pages);
+  console.log(urlDocument);
+
+  useEffect(() => {
+    dispatch(getPagesInDocument(id));
+  }, [dispatch]);
+
   const handleCloseDocumentWindow = () => setOpenDocumentWindow(false);
 
   return (
     <ModalWindow>
       <Typography variant="h4" component="div" gutterBottom>
         {name}
+        {/* {pages.length ? (
+          pages.map((document) => <div key={document}>{document}</div>)
+        ) : null} */}
       </Typography>
       <div>
         <iframe

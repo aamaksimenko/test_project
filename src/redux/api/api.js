@@ -56,3 +56,8 @@ export const getAllDocumentsRequest = async () => {
   const data = await api.get('/documents');
   return data;
 };
+
+export const getPagesInDocumentRequest = async (id) => {
+  const data = await api.get(`/documents/${id}`);
+  return data;
+};

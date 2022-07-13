@@ -6,14 +6,17 @@ import { Typography, Box, Container } from '@mui/material';
 import { DocumentMemo } from '../../components/Document';
 
 import { getAllDocuments } from '../../redux/slices/getAllDocumentsSlice';
+// import { getPagesInDocument } from '../../redux/slices/getPagesInDocumentSlice';
 
 export const LibraryPage = () => {
   const dispatch = useDispatch();
 
   const { documents } = useSelector((state) => state.getAllDocuments);
+  console.log(documents);
 
   useEffect(() => {
     dispatch(getAllDocuments());
+    // dispatch(getPagesInDocument());
   }, [dispatch]);
 
   return (
