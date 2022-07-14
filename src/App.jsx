@@ -7,6 +7,7 @@ import { LibraryPage } from './pages/LibraryPage';
 import { Companies } from './pages/Companies';
 import { UserPage } from './pages/UserPage';
 import { CompanyPageMemo } from './pages/CompanyPage';
+import { DocumentPageMemo } from './pages/DocumentPage';
 import { PrivateRoute } from './HOC/PrivateRoute';
 
 export const App = () => (
@@ -19,6 +20,7 @@ export const App = () => (
       <Route path="/company_page/:id" element={PrivateRoute(CompanyPageMemo)} />
       <Route path="/user_page/:id" element={PrivateRoute(UserPage)} />
       <Route path="/user_page/" element={PrivateRoute(UserPage)} />
+      <Route path="/documents/:id" element={PrivateRoute(DocumentPageMemo)} />
     </Routes>
   </BrowserRouter>
 );

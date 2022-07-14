@@ -1,0 +1,1 @@
+export { DocumentPageMemo } from './DocumentPage';
