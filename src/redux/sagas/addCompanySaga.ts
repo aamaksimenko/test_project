@@ -4,12 +4,14 @@ import { addCompanyRequest } from '../api/api';
 import { successAddCompany, failedAddCompany } from '../slices/addCompanySlice';
 import * as actions from '../slices/addCompanySlice';
 
-function* addCompany({ payload }) {
+function* addCompany({
+  payload
+}: any) {
   try {
     const { data } = yield addCompanyRequest(payload);
     yield put(successAddCompany(data));
   } catch (error) {
-    yield put(failedAddCompany(error.message));
+    yield put(failedAddCompany((error as any).message));
   }
 }
 

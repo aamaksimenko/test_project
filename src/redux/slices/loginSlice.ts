@@ -37,6 +37,7 @@ const loginSlice = createSlice({
     successLogout(state) {
       state.isLogOut = true;
       state.isAccess = false;
+      // @ts-expect-error TS(2322): Type 'null' is not assignable to type 'never[]'.
       state.user = null;
     },
     failedLogout(state, action) {

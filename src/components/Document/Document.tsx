@@ -1,18 +1,24 @@
 import React, { memo } from 'react';
-import { string, number } from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
 import { Typography, Button, Box } from '@mui/material';
 
 
+// @ts-expect-error TS(2307): Cannot find module '../../icons/pdfIcon.png' or it... Remove this comment to see the full error message
 import pdfIcon from '../../icons/pdfIcon.png';
 
-const Document = ({ name, id }) => {
+type Props = {
+    name: string;
+    id: number;
+};
+
+const Document = ({ name, id }: Props) => {
   const navigate = useNavigate();
 
   const handlerOpenDocument = () => navigate(`/documents/${id}`);
 
   return (
+    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <Box
         sx={{
           border: '1px solid black',
@@ -25,24 +31,22 @@ const Document = ({ name, id }) => {
           flex: '0 0 150px',
         }}
       >
+        {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <Typography variant="h6" component="div" gutterBottom>
           {name}
         </Typography>
+        {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <Button
           id="openDocument"
           type="button"
           onClick={handlerOpenDocument}
           sx={{ ':hover': {bgcolor: '#7FFFD4'} }}
         >
+          {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <img src={pdfIcon} alt="Icon" width={50} />
         </Button>
       </Box>
   );
-};
-
-Document.propTypes = {
-  name: string.isRequired,
-  id: number.isRequired,
 };
 
 export const DocumentMemo = memo(Document);

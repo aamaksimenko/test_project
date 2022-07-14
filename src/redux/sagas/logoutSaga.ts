@@ -10,7 +10,7 @@ function* logoutUser() {
     yield put(successLogout());
     localStorage.clear();
   } catch (error) {
-    yield put(failedLogout(error.message));
+    yield put(failedLogout((error as any).message));
   }
 }
 

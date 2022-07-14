@@ -1,8 +1,6 @@
 import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
-import { func } from 'prop-types';
 import { useFormik } from 'formik';
 import {
   TextField,
@@ -16,11 +14,18 @@ import { ModalWindow } from '../Modal';
 
 import { styleModalButton } from '../../style/style';
 
-const Registration = ({ setOpenRegistration }) => {
+type Props = {
+    setOpenRegistration: (...args: any[]) => any;
+};
+
+const Registration = ({ setOpenRegistration }: Props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const submitRegistration = (values, { resetForm }) => {
+  const submitRegistration = (values: any, {
+    resetForm
+  }: any) => {
+    // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
     dispatch(userRegistration(values));
     resetForm(initialValuesRegistration);
     setOpenRegistration(false);
@@ -39,13 +44,18 @@ const Registration = ({ setOpenRegistration }) => {
   };
 
   return (
+    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <ModalWindow>
+      {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Typography variant="h4" component="div" gutterBottom>
         Registration form
       </Typography>
 
+      {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <form onSubmit={formik.handleSubmit}>
+        {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div>
+          {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <TextField
             sx={{
               margin: '20px 0 10px 0',
@@ -59,6 +69,7 @@ const Registration = ({ setOpenRegistration }) => {
             error={formik.touched.username && Boolean(formik.errors.username)}
             helperText={formik.touched.username && formik.errors.username}
           />
+          {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <TextField
             sx={{
               margin: '10px 0 10px 0',
@@ -72,6 +83,7 @@ const Registration = ({ setOpenRegistration }) => {
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
           />
+          {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <TextField
             sx={{
               margin: '10px 0 20px 0',
@@ -87,7 +99,9 @@ const Registration = ({ setOpenRegistration }) => {
             helperText={formik.touched.password && formik.errors.password}
           />
         </div>
+        {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div style={styleModalButton}>
+          {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Button
             color="primary"
             variant="contained"
@@ -95,6 +109,7 @@ const Registration = ({ setOpenRegistration }) => {
           >
             Submit
           </Button>
+          {/* @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Button
             color="primary"
             variant="contained"
@@ -107,10 +122,6 @@ const Registration = ({ setOpenRegistration }) => {
       </form>
     </ModalWindow>
   );
-};
-
-Registration.propTypes = {
-  setOpenRegistration: func.isRequired,
 };
 
 export const RegistrationMemo = memo(Registration);

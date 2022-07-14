@@ -4,12 +4,14 @@ import { getOneDocumentRequest } from '../api/api';
 import { successGetOneDocument, failedGetOneDocument } from '../slices/getOneDocumentSlice';
 import * as actions from '../slices/getOneDocumentSlice';
 
-function* getOneDocument({ payload }) {
+function* getOneDocument({
+  payload
+}: any) {
   try {
     const { data } = yield getOneDocumentRequest(payload);
     yield put(successGetOneDocument(data));
   } catch (error) {
-    yield put(failedGetOneDocument(error.message));
+    yield put(failedGetOneDocument((error as any).message));
   }
 }
 

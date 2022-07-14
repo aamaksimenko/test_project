@@ -9,7 +9,7 @@ function* getCompanies() {
     const { data } = yield getCompaniesRequest();
     yield put(successGetCompanies(data));
   } catch (error) {
-    yield put(failedGetCompanies(error.message));
+    yield put(failedGetCompanies((error as any).message));
   }
 }
 

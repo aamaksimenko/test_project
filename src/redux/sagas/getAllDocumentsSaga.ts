@@ -9,7 +9,7 @@ function* getAllDocuments() {
     const { data } = yield getAllDocumentsRequest();
     yield put(successGetAllDocuments(data));
   } catch (error) {
-    yield put(failedGetAllDocuments(error.message));
+    yield put(failedGetAllDocuments((error as any).message));
   }
 }
 

@@ -4,12 +4,14 @@ import { getUsersInCompanyRequest } from '../api/api';
 import { successGetUsers, failedGetUsers } from '../slices/getUsersInCompanySlice';
 import * as actions from '../slices/getUsersInCompanySlice';
 
-function* getUsersInCompany({ payload }) {
+function* getUsersInCompany({
+  payload
+}: any) {
   try {
     const { data } = yield getUsersInCompanyRequest(payload);
     yield put(successGetUsers(data));
   } catch (error) {
-    yield put(failedGetUsers(error.message));
+    yield put(failedGetUsers((error as any).message));
   }
 }
 

@@ -1,5 +1,6 @@
 import createSagaMiddleware from 'redux-saga';
 import { configureStore } from '@reduxjs/toolkit';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'redu... Remove this comment to see the full error message
 import logger from 'redux-logger';
 
 import { rootSaga } from './sagas/rootSaga';
